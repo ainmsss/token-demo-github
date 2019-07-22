@@ -1,0 +1,8 @@
+debug: true
+server:
+  port: 8085
+spring:
+  redis:
+    port: 6379
+    host: 39.108.144.152
+    database: 3
