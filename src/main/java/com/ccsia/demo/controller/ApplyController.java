@@ -21,7 +21,7 @@ public class ApplyController {
 
     @Autowired AuthService authService;
 
-    @RequestMapping(value = "/token")
+    @RequestMapping(value = "/token.json")
     public Token getToken(String client_id, String client_secret){
         Token token = new Token();
         if(StringUtils.isBlank(client_id) || StringUtils.isBlank(client_secret)) {
@@ -37,7 +37,7 @@ public class ApplyController {
         return token;
     }
 
-    @PostMapping(value = "/applicants")
+    @PostMapping(value = "/applicants.json")
     public Result getToken(String client_id,String access_token, String title, String content){
         if(!authService.checkToken(client_id, access_token))
             return ResultBuilder.error(Err.EXPIRED_TOKEN.getErrCode(), Err.EXPIRED_TOKEN.getErrMsg());
