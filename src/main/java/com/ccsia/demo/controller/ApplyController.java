@@ -43,7 +43,7 @@ public class ApplyController {
     @PostMapping(value = "/applicants")
     public Result getToken(@RequestBody ApplicantParams params){
         if(!authService.checkToken(params.getClient_id(), params.getAccess_token()))
-            return ResultBuilder.error(Err.EXPIRED_TOKEN.getErrCode(), Err.EXPIRED_TOKEN.getErrMsg());
+            return ResultBuilder.error();
         // Processing subsequent applications
         logger.info("title : {}", params.getTitle());
         logger.info("content : {}", JSON.toJSONString(params.getContent()));

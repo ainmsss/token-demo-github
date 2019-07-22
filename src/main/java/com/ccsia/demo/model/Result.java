@@ -5,10 +5,6 @@ public class Result {
 
     private Object data;
 
-    private String errorCode;
-
-    private String errorMsg;
-
     private boolean success;
 
     public Result(boolean success) {
@@ -20,11 +16,6 @@ public class Result {
         this.success = success;
     }
 
-    public Result(boolean success, String errorCode, String errorMsg) {
-        this.success = success;
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
-    }
 
     public Object getData() {
         return data;
@@ -32,22 +23,6 @@ public class Result {
 
     public void setData(Object data) {
         this.data = data;
-    }
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
     }
 
     public boolean isSuccess() {
