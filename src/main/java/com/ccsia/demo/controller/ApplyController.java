@@ -22,14 +22,19 @@ public class ApplyController {
     @Autowired AuthService authService;
 
     @RequestMapping(value = "/token")
-    public Result getToken(String client_id, String client_secret){
-        if(StringUtils.isBlank(client_id) || StringUtils.isBlank(client_secret))
-            return ResultBuilder.error(Err.NULL_APPKEY_OR_SRCRET.getErrCode(), Err.NULL_APPKEY_OR_SRCRET.getErrMsg());
-        if(!authService.checkThird(client_id, client_secret))
-            return ResultBuilder.error(Err.NOT_MATCH_APPKEY_SECRET.getErrCode(), Err.NOT_MATCH_APPKEY_SECRET.getErrMsg());
+    public Token getToken(String client_id, String client_secret){
+        Token token = new Token();
+        if(StringUtils.isBlank(client_id) || StringUtils.isBlank(client_secret)) {
+            token.setError(Err.NULL_APPKEY_OR_SRCRET.getErrMsg());
+            return token;
+        }
+        if(!authService.checkThird(client_id, client_secret)) {
+            token.setError(Err.NOT_MATCH_APPKEY_SECRET.getErrMsg());
+            return token;
+        }
         // Generate a new token each time you get a token
-        Token token = authService.token(client_id, client_secret);
-        return ResultBuilder.success(token);
+        token = authService.token(client_id, client_secret);
+        return token;
     }
 
     @PostMapping(value = "/applicants")
