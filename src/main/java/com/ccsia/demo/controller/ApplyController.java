@@ -6,6 +6,8 @@ import com.ccsia.demo.model.ResultBuilder;
 import com.ccsia.demo.model.Token;
 import com.ccsia.demo.service.AuthService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api")
 public class ApplyController {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired AuthService authService;
 
@@ -33,6 +37,8 @@ public class ApplyController {
         if(!authService.checkToken(client_id, access_token))
             return ResultBuilder.error(Err.EXPIRED_TOKEN.getErrCode(), Err.EXPIRED_TOKEN.getErrMsg());
         // Processing subsequent applications
+        logger.info("title : {}", title);
+        logger.info("content : {}", content);
         return ResultBuilder.success();
     }
 
