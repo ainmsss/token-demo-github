@@ -51,6 +51,6 @@ public class AuthService {
     private void save(Token token) {
         BoundValueOperations bvo = redisTemplate.boundValueOps(token.getClient_id());
         // the setting 2 hours expired
-        bvo.set(JSON.toJSONString(token), 2L, TimeUnit.HOURS);
+        bvo.set(JSON.toJSONString(token), token.getExpires_in(), TimeUnit.SECONDS);
     }
 }
