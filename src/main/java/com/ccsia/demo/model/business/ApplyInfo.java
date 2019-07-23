@@ -23,6 +23,7 @@ public class ApplyInfo {
     private Visa visa;
     private String phoneNumber;
     private String email;
+    private String creditscore;
 
     public String getFirstNameEnglish() {
         return firstNameEnglish;
@@ -198,5 +199,13 @@ public class ApplyInfo {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCreditscore() {
+        return creditscore;
+    }
+
+    public void setCreditscore(String creditscore) {
+        this.creditscore = creditscore;
     }
 }

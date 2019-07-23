@@ -5,6 +5,7 @@ import com.ccsia.demo.model.Err;
 import com.ccsia.demo.model.Result;
 import com.ccsia.demo.model.ResultBuilder;
 import com.ccsia.demo.model.Token;
+import com.ccsia.demo.model.business.ApplyInfo;
 import com.ccsia.demo.model.params.ApplicantParams;
 import com.ccsia.demo.service.AuthService;
 import org.apache.commons.lang3.StringUtils;
@@ -41,12 +42,11 @@ public class ApplyController {
     }
 
     @PostMapping(value = "/applicants")
-    public Result getToken(@RequestBody ApplicantParams params){
-        if(!authService.checkToken(params.getClient_id(), params.getAccess_token()))
+    public Result applicants(String client_id, String access_token, @RequestBody ApplyInfo applyInfo){
+        if(!authService.checkToken(client_id, access_token))
             return ResultBuilder.error();
         // Processing subsequent applications
-        logger.info("title : {}", params.getTitle());
-        logger.info("content : {}", JSON.toJSONString(params.getContent()));
+        logger.info("content : {}", JSON.toJSONString(applyInfo));
         return ResultBuilder.success();
     }
 
