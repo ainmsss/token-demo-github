@@ -1,6 +1,7 @@
 package com.ccsia.demo.model.business;
 
 public class ApplyInfo {
+    private String applyId;
     private String firstNameEnglish;
     private String lastNameEnglish;
     private String firstNameChinese;
@@ -24,6 +25,14 @@ public class ApplyInfo {
     private String phoneNumber;
     private String email;
     private String creditscore;
+
+    public String getApplyId() {
+        return applyId;
+    }
+
+    public void setApplyId(String applyId) {
+        this.applyId = applyId;
+    }
 
     public String getFirstNameEnglish() {
         return firstNameEnglish;
